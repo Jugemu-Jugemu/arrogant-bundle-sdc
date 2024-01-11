@@ -10,7 +10,8 @@ import SystemReq from "./AppContent/SystemReq.jsx"
 import Footer from "./Footer.jsx"
 import ShoppingCartContext from "./ShoppingCartContext/ShoppingCartContext.mjs"
 import { useState, useEffect, useContext } from "react"
-import getProductData from "../api.js"
+// import getProductData from "../api.js"
+import sampleProduct from "../product-data-hardcode.js"
 import Bundle from "./Bundle.jsx"
 import Store from "./Store.jsx"
 import About from "./About.jsx"
@@ -25,35 +26,35 @@ const App = () => {
     } = useContext(ShoppingCartContext)
 
     const [isLoading, setIsLoading] = useState(true)
-    const [productData, setProductData] = useState({})
+    const [sampleProduct, setProductData] = useState({})
 
     useEffect(() => {
 
-        const f = async () => {
-            const productData = await getProductData(1)
-            setProductData(productData)
-            setIsLoading(false)
-            console.log(productData)
-        }
-
-        f()
+        // const f = async () => {
+        //     const sampleProduct = await getProductData(1)
+        //     console.log(sampleProduct)
+        // }
+        
+        // f()
+        setProductData(sampleProduct)
+        setIsLoading(false)
 
     }, [])
 
     if (!isLoading) {
         return (
             <>
-                {cartDisplay && <CurtainModal productData={productData} setProductData={setProductData} />}
+                {cartDisplay && <CurtainModal sampleProduct={sampleProduct} setProductData={setProductData} />}
                 <Banner />
                 <Navbar />
                 <div className='body ctn'>
                     <div className="app-content ctn">
-                        <Hero productData={productData} />
-                        <ProductDetails platforms={productData.platforms} publisher={productData.publisher} operatingSystems={productData.operating_systems} links={productData.links} rating={productData.rating} />
+                        <Hero sampleProduct={sampleProduct} />
+                        <ProductDetails platforms={sampleProduct.platforms} publisher={sampleProduct.publisher} operatingSystems={sampleProduct.operating_systems} links={sampleProduct.links} rating={sampleProduct.rating} />
                         <ProductDescription />
-                        <CriticalReception criticalReceptions={productData.critical_receptions} />
-                        <PopularCarousel productData={productData}/>
-                        <SystemReq systemRequirements={productData.system_requirements} />
+                        <CriticalReception criticalReceptions={sampleProduct.critical_receptions} />
+                        <PopularCarousel sampleProduct={sampleProduct}/>
+                        <SystemReq systemRequirements={sampleProduct.system_requirements} />
                     </div> {/* end app-content ctn */}
                 </div> {/* end body ctn */}
                 <Footer />
