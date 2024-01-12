@@ -9,7 +9,7 @@ import PopularCarousel from "./AppContent/PopularCarousel/PopularCarousel.jsx"
 import SystemReq from "./AppContent/SystemReq.jsx"
 import Footer from "./Footer.jsx"
 import ShoppingCartContext from "./ShoppingCartContext/ShoppingCartContext.mjs"
-import { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import getProductData from "../api.js"
 import { createClient } from '@supabase/supabase-js'
 import Bundle from "./Bundle.jsx"
@@ -29,18 +29,33 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [sampleProduct, setProductData] = useState({})
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        // const f = async () => {
-        //     const sampleProduct = await getProductData(1)
-        //     console.log(sampleProduct)
-        // }
-        
-        // f()
-        setProductData(sampleProduct)
+
         setIsLoading(false)
 
-    }, [])
+
+    //get
+    useEffect(() => {
+        async function fetchProduct() {
+            try{
+                let { data: productData, error} = await supabase
+                    .from('products')
+                    .select('*')
+                    .eq('id', 2) 
+                if(error) {
+                    console.log("Yup. Here")
+                    throw error;
+                }
+                console.log(productData[0])
+                setProductData(productData[0]);
+            } catch (error) {
+                console.log("Error down here")
+                console.error('Error fetching product:', error)
+            }
+        }
+        fetchProduct();
+    }, [supabase])
 
     if (!isLoading) {
         return (
