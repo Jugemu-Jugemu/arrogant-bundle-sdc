@@ -10,16 +10,17 @@ import SystemReq from "./AppContent/SystemReq.jsx"
 import Footer from "./Footer.jsx"
 import ShoppingCartContext from "./ShoppingCartContext/ShoppingCartContext.mjs"
 import { useState, useEffect, useContext } from "react"
-// import getProductData from "../api.js"
-import sampleProduct from "../product-data-hardcode.js"
+import getProductData from "../api.js"
+import { createClient } from '@supabase/supabase-js'
 import Bundle from "./Bundle.jsx"
 import Store from "./Store.jsx"
 import About from "./About.jsx"
+import { useSupabase } from './SupabaseContext.jsx';
 
 // TODO put the div containers into their own components
 // TODO Context API for all app images and text content?
 const App = () => {
-    
+    const supabase = useSupabase();
     const {
         cartDisplay,
         bundleDisplay
