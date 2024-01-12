@@ -27,20 +27,13 @@ const App = () => {
     } = useContext(ShoppingCartContext)
 
     const [isLoading, setIsLoading] = useState(true)
-    const [productData, setProductData] = useState({})
+    const [sampleProduct, setProductData] = useState({})
 
     // useEffect(() => {
 
-    //     const f = async () => {
-    //         const productData = await getProductData(1)
-    //         setProductData(productData)
-    //         setIsLoading(false)
-    //         console.log(productData)
-    //     }
 
-    //     f()
+        setIsLoading(false)
 
-    // }, [])
 
     //get
     useEffect(() => {
@@ -67,17 +60,17 @@ const App = () => {
     if (!isLoading) {
         return (
             <>
-                {cartDisplay && <CurtainModal productData={productData} setProductData={setProductData} />}
+                {cartDisplay && <CurtainModal sampleProduct={sampleProduct} setProductData={setProductData} />}
                 <Banner />
                 <Navbar />
                 <div className='body ctn'>
                     <div className="app-content ctn">
-                        <Hero productData={productData} />
-                        <ProductDetails platforms={productData.platforms} publisher={productData.publisher} operatingSystems={productData.operating_systems} links={productData.links} rating={productData.rating} />
+                        <Hero sampleProduct={sampleProduct} />
+                        <ProductDetails platforms={sampleProduct.platforms} publisher={sampleProduct.publisher} operatingSystems={sampleProduct.operating_systems} links={sampleProduct.links} rating={sampleProduct.rating} />
                         <ProductDescription />
-                        <CriticalReception criticalReceptions={productData.critical_receptions} />
-                        <PopularCarousel productData={productData}/>
-                        <SystemReq systemRequirements={productData.system_requirements} />
+                        <CriticalReception criticalReceptions={sampleProduct.critical_receptions} />
+                        <PopularCarousel sampleProduct={sampleProduct}/>
+                        <SystemReq systemRequirements={sampleProduct.system_requirements} />
                     </div> {/* end app-content ctn */}
                 </div> {/* end body ctn */}
                 <Footer />

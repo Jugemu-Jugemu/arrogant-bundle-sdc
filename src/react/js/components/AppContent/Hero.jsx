@@ -5,7 +5,7 @@ import HeroCarousel from './HeroCarousel';
 import '../../../css/hero.css';
 import ShoppingCartContext from "../ShoppingCartContext/ShoppingCartContext.mjs";
 
-const Hero = ({productData}) => {
+const Hero = ({sampleProduct}) => {
     const {
         cartItem,
         handleCartItem,
@@ -22,7 +22,7 @@ const Hero = ({productData}) => {
         humble_choice_savings: savings,
         gameplay_image_links: images,
         platforms,
-    } = productData;
+    } = sampleProduct;
 
     const shopClick = () => {
         console.log('shop clicked')
@@ -41,7 +41,7 @@ const Hero = ({productData}) => {
                 </div>
                 <div id='product-hero'>
                     <div className="main-img">
-                        <img src={`https://arrogant-bundle.onrender.com/${images[currentIndex]}`} className="main-carousel-img"
+                        <img src={`https://hb.imgix.net/4c76342c14754a096938b682a0ae56b4339034d2.jpg?auto=compress,format&fit=crop&h=425&w=741&s=5ea8a89585bbd2c51bf5bd3c3ef6252e`} className="main-carousel-img"
                         ref={imageRef}
                         />
                     </div>
