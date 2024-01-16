@@ -11,16 +11,14 @@ import Footer from "./Footer.jsx"
 import ShoppingCartContext from "./ShoppingCartContext/ShoppingCartContext.mjs"
 import React, { useState, useEffect, useContext } from "react"
 import getProductData from "../api.js"
-import { createClient } from '@supabase/supabase-js'
 import Bundle from "./Bundle.jsx"
 import Store from "./Store.jsx"
 import About from "./About.jsx"
-import { useSupabase } from './SupabaseContext.jsx';
 
 // TODO put the div containers into their own components
 // TODO Context API for all app images and text content?
 const App = () => {
-    const supabase = useSupabase();
+    
     const {
         cartDisplay,
         bundleDisplay
@@ -56,7 +54,9 @@ const App = () => {
         fetchProduct();
         //setProductData(productData[0]);
 
+
     }, [supabase])
+
 
     console.log(productData, `before if`);
 
@@ -70,6 +70,7 @@ const App = () => {
                 <div className='body ctn'>
                     <div className="app-content ctn">
                         <Hero productData={productData} />
+
                         {/* <ProductDetails platforms={productData.platforms} publisher={productData.publisher} operatingSystems={productData.operating_systems} links={productData.links} rating={productData.rating} /> */}
                         {/* <ProductDescription /> */}
                         {/* <CriticalReception criticalReceptions={productData.critical_receptions} /> */}
@@ -77,6 +78,7 @@ const App = () => {
                         {/* <SystemReq systemRequirements={productData.system_requirements} /> */}
                     </div>
                 </div>
+
                 <Footer />
             </>
         )
