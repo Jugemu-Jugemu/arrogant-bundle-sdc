@@ -9,13 +9,12 @@ import addSettings from "./settings.js"
 
 // Imports our add routes function
 import addRoutes from "./routes.js"
-
+import fetchProduct from "./routes.js"
 // Creates our express server instance
 const server = express()
 
 // Adds the middleware
 addMiddleware(server)
-
 // Adds our settings
 addSettings(server)
 
